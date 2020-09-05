@@ -1,5 +1,6 @@
 package com.jaivardhan.hibernate;
 
+import com.jaivardhan.dto.Address;
 import com.jaivardhan.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,11 +13,15 @@ public class HibernateTest {
     public static void main(String[] args) {
         UserDetails userDetails=new UserDetails();
         UserDetails userDetails2=new UserDetails();
-
+        Address address=new Address();
+        address.setState("bihar");
+        address.setCity("Patna");
+        address.setPincode("560078");
+        address.setStreet("RKPURAM");
         userDetails.setUserName("Jaivardhan");
         userDetails2.setUserName("AnandVardhan");
-        userDetails.setAddress("Address is Gaana Regency Appartment");
-        userDetails2.setAddress("Address is Ganaga Vihar Colony");
+        userDetails.setAddress(address);
+        userDetails2.setAddress(address);
         userDetails.setDescription("He is a jolly boy");
         userDetails2.setDescription("He is a jolly boy");
         userDetails.setJoinedDate(new Date());

@@ -14,20 +14,21 @@ public class UserDetails {
 
     @Column(name = "USER_NAME")
     private String userName;
-    @Transient
-    private String Address;
+    //@Transient
+
+    private Address address;
     @Temporal(TemporalType.TIME)
     private Date joinedDate;
 
     @Lob
     private String description;
 
-    public String getAddress() {
-        return Address;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Date getJoinedDate() {
