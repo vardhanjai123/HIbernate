@@ -17,6 +17,23 @@ public class UserDetails {
     //@Transient
 
     private Address address;
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "street",column = @Column(name = "Office_Street")),
+            @AttributeOverride(name = "city",column = @Column(name = "Office_City")),
+            @AttributeOverride(name = "pincode",column = @Column(name = "Office_Pincode")),
+            @AttributeOverride(name = "state",column = @Column(name = "Office_State"))
+    })
+    private Address officeAddress;
+
+    public Address getOfficeAddress() {
+        return officeAddress;
+    }
+
+    public void setOfficeAddress(Address officeAddress) {
+        this.officeAddress = officeAddress;
+    }
+
     @Temporal(TemporalType.TIME)
     private Date joinedDate;
 

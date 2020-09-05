@@ -12,31 +12,40 @@ public class HibernateTest {
 
     public static void main(String[] args) {
         UserDetails userDetails=new UserDetails();
-        UserDetails userDetails2=new UserDetails();
         Address address=new Address();
+        Address officeAddress=new Address();
+
+        //home address
         address.setState("bihar");
         address.setCity("Patna");
-        address.setPincode("560078");
-        address.setStreet("RKPURAM");
+        address.setPincode("800006");
+        address.setStreet("Pather ki masjid");
+
+        //office Address
+        officeAddress.setStreet("Sachivalay Street");
+        officeAddress.setCity("patna");
+        officeAddress.setPincode("800009");
+        officeAddress.setState("bihar");
+
         userDetails.setUserName("Jaivardhan");
-        userDetails2.setUserName("AnandVardhan");
         userDetails.setAddress(address);
-        userDetails2.setAddress(address);
+        userDetails.setOfficeAddress(officeAddress);
         userDetails.setDescription("He is a jolly boy");
-        userDetails2.setDescription("He is a jolly boy");
         userDetails.setJoinedDate(new Date());
-        userDetails2.setJoinedDate(new Date());
+
+        //code to get session factory
         SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+
+        //code to get session
         Session session=sessionFactory.openSession();
         session.beginTransaction();
         session.save(userDetails);
-        session.save(userDetails2);
         session.getTransaction().commit();
         session.close();
         userDetails=null;
         session=sessionFactory.openSession();
         session.beginTransaction();
-        userDetails= (UserDetails) session.get(UserDetails.class,2);
+        userDetails= (UserDetails) session.get(UserDetails.class,1);
         System.out.println(userDetails.getUserName());
 
     }
