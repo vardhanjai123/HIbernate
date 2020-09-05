@@ -11,27 +11,30 @@ import java.util.Date;
 public class HibernateTest {
 
     public static void main(String[] args) {
+
+        Address address1=new Address();
+        address1.setState("Bihar");
+        address1.setCity("Patna");
+        address1.setPincode("800001");
+        address1.setStreet("Ganga Vihar Colony");
+
+        Address address2=new Address();
+        address2.setState("Karnataka");
+        address2.setCity("Bangalore");
+        address2.setPincode("560078");
+        address2.setStreet("Naidu Layout");
+
         UserDetails userDetails=new UserDetails();
-        Address address=new Address();
-        Address officeAddress=new Address();
 
-        //home address
-        address.setState("bihar");
-        address.setCity("Patna");
-        address.setPincode("800006");
-        address.setStreet("Pather ki masjid");
-
-        //office Address
-        officeAddress.setStreet("Sachivalay Street");
-        officeAddress.setCity("patna");
-        officeAddress.setPincode("800009");
-        officeAddress.setState("bihar");
-
-        userDetails.setUserName("Jaivardhan");
-        userDetails.setAddress(address);
-        userDetails.setOfficeAddress(officeAddress);
-        userDetails.setDescription("He is a jolly boy");
+        userDetails.setUserName("jaivardhan");
         userDetails.setJoinedDate(new Date());
+        userDetails.setDescription("Hello All I am a very jolly boy!!");
+        userDetails.getListOfAddresses().add(address1);
+        userDetails.getListOfAddresses().add(address2);
+
+
+
+
 
         //code to get session factory
         SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();

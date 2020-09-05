@@ -1,6 +1,8 @@
 package com.jaivardhan.dto;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -14,25 +16,10 @@ public class UserDetails {
 
     @Column(name = "USER_NAME")
     private String userName;
-    //@Transient
 
-    private Address address;
+    @ElementCollection
+    private Collection<Address> listOfAddresses=new ArrayList<Address>();
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "street",column = @Column(name = "Office_Street")),
-            @AttributeOverride(name = "city",column = @Column(name = "Office_City")),
-            @AttributeOverride(name = "pincode",column = @Column(name = "Office_Pincode")),
-            @AttributeOverride(name = "state",column = @Column(name = "Office_State"))
-    })
-    private Address officeAddress;
-
-    public Address getOfficeAddress() {
-        return officeAddress;
-    }
-
-    public void setOfficeAddress(Address officeAddress) {
-        this.officeAddress = officeAddress;
-    }
 
     @Temporal(TemporalType.TIME)
     private Date joinedDate;
@@ -40,12 +27,28 @@ public class UserDetails {
     @Lob
     private String description;
 
-    public Address getAddress() {
-        return address;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Collection<Address> getListOfAddresses() {
+        return listOfAddresses;
+    }
+
+    public void setListOfAddresses(Collection<Address> listOfAddresses) {
+        this.listOfAddresses = listOfAddresses;
     }
 
     public Date getJoinedDate() {
@@ -62,21 +65,5 @@ public class UserDetails {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName+"FROM GETTER METHOD";
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 }
