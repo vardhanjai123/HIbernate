@@ -8,6 +8,7 @@ import java.util.Date;
 public class UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID")
     private int userId;
 

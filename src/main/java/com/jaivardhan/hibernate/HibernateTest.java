@@ -11,15 +11,21 @@ public class HibernateTest {
 
     public static void main(String[] args) {
         UserDetails userDetails=new UserDetails();
-        userDetails.setUserId(2);
+        UserDetails userDetails2=new UserDetails();
+
         userDetails.setUserName("Jaivardhan");
+        userDetails2.setUserName("AnandVardhan");
         userDetails.setAddress("Address is Gaana Regency Appartment");
+        userDetails2.setAddress("Address is Ganaga Vihar Colony");
         userDetails.setDescription("He is a jolly boy");
+        userDetails2.setDescription("He is a jolly boy");
         userDetails.setJoinedDate(new Date());
+        userDetails2.setJoinedDate(new Date());
         SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
         Session session=sessionFactory.openSession();
         session.beginTransaction();
         session.save(userDetails);
+        session.save(userDetails2);
         session.getTransaction().commit();
         session.close();
         userDetails=null;
